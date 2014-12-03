@@ -1,4 +1,5 @@
 import PointMass
+from Common import *
 from random import *
 
 class H3PointMass(PointMass.PointMass):
@@ -100,7 +101,7 @@ class H3PointMass(PointMass.PointMass):
     #Return the point and a new heading
     def translate(self, x, v, d):
         if (d == 0):
-            return x
+            return (x, v)
         #Determine the center of the sphere the geodesic lies on
         c = self.get_geodesic_center(x, v)
         

@@ -32,6 +32,8 @@ modeselector = wx.RadioBox(p, pos=(1.25*L, 0.5*L), size=(0.25*L, 0.2*L),
                            choices = ['S3', 'H3'])
 minmass = 0.1
 maxmass = 2.0
+minspeed = 0.1
+maxspeed = 2.0
 mode = 'S3'
 N = 40
 PointMass.G = 0.3
@@ -49,12 +51,16 @@ def loadmode(string):
 def loadconsts():
     global minmass
     global maxmass
+    global minspeed
+    global maxspeed
     global PointMass
     global N
     global mode
     
     minmass = loadfloat(minmassrangeselector.GetValue())
-    maxmass = loadfloat(minmassrangeselector.GetValue())
+    maxmass = loadfloat(maxmassrangeselector.GetValue())
+    minspeed = loadfloat(minspeedrangeselector.GetValue())
+    maxspeed = loadfloat(maxspeedrangeselector.GetValue())
     PointMass.G = loadfloat(gravselector.GetValue())
     N = loadint(numselector.GetValue())
     mode = modeselector.GetStringSelection()
@@ -69,9 +75,14 @@ def regenerate(evt):
         point.cleanup()
     points = []
     for i in range(N):
-        pos = S3PointMass.randompoint()
-        vel = S3PointMass.randomvel()
-        points.append(S3PointMass(pos, uniform(0.1, 2.0), vel, 0.0))
+        if mode == 'S3':
+            pos = S3PointMass.randompoint()
+            vel = S3PointMass.randomvel()
+            points.append(S3PointMass(pos, uniform(minmass, maxmass), vel, uniform(minspeed, maxspeed)))
+        else:
+            pos = H3PointMass.randompoint()
+            vel = H3PointMass.randomvel()
+            points.append(H3PointMass(pos, uniform(minmass, maxmass), vel, uniform(minspeed, maxspeed)))
 
 
 
