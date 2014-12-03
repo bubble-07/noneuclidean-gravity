@@ -11,11 +11,13 @@ dth = 0.1
 class PointMass:
     def __init__(self, p, mass, velocitydir, speed):
         rand_color = (uniform(0.0, 1.0), uniform(0.0, 1.0), uniform(0.0, 1.0))
-        self.sprite = sphere(pos=(0,0,0), radius=0.05, color=rand_color, make_trail=True, retain=200)
+        self.sprite = sphere(pos=(0,0,0), radius=0.05, color=rand_color, make_trail=False, retain=200)
         self.mass = mass
         self.velocitydir = velocitydir
         self.speed=speed
         self.pos = p
+        self.updateappearance()
+        self.sprite.make_trail=True
    
     #Move in the space according to the velocity and a timestep
     def move(self, t):
@@ -37,3 +39,8 @@ class PointMass:
                 #Add to the accumulator
                 accum += dir * self.gravityforce(self.mass, other.mass, dist) * t
         (self.velocitydir, self.speed) = self.addtounitvec(self.velocitydir, self.speed, accum)                  
+    #Defined to clean up or hide the object.
+    def cleanup(self):
+        self.sprite.visible=False
+        self.sprite.trail_object.visible=False
+        self.sprite.make_trail=False

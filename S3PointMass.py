@@ -1,7 +1,7 @@
-from PointMass import *
+import PointMass
 from Common import *
 
-class S3PointMass(PointMass):
+class S3PointMass(PointMass.PointMass):
         #Will represent S3 with unit vectors in R4
 
     #Given two points in S3, return the distance between them
@@ -26,11 +26,11 @@ class S3PointMass(PointMass):
 
     #Gives the force of gravity
     def gravityforce(self, m1, m2, d):
-        if (d < dth):
-            d = dth
-        if (d > 3.1415 - dth):
-            d = dth
-        return G*m1*m2*(1.0/(sin(d) * sin(d)))
+        if (d < PointMass.dth):
+            d = PointMass.dth
+        if (d > 3.1415 - PointMass.dth):
+            d = PointMass.dth
+        return PointMass.G*m1*m2*(1.0/(sin(d) * sin(d)))
     #Given a unit vector, a magnitude, and a vector to add, return unit, magnitude of result
     def addtounitvec(self, v1, m1, v2):
         vec1 = v1 * m1

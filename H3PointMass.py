@@ -1,7 +1,7 @@
-from PointMass import *
+import PointMass
 from random import *
 
-class H3PointMass(PointMass):
+class H3PointMass(PointMass.PointMass):
 
     #Gravity simulation in poincare sphere
 
@@ -26,9 +26,9 @@ class H3PointMass(PointMass):
 
     #Given masses and a distance, determine gravitational force
     def gravityforce(self, m1, m2, d):
-        if (d < dth):
-            d = dth
-        return G*m1*m2*(1.0/(sinh(d)*sinh(d)))
+        if (d < PointMass.dth):
+            d = PointMass.dth
+        return PointMass.G*m1*m2*(1.0/(sinh(d)*sinh(d)))
 
     #Given masses and a distance, determine gravitational PE
     def gravityenergy(self, m1, m2, d):
