@@ -1,8 +1,9 @@
 from PointMass import *
 from H3PointMass import *
 from S3PointMass import *
+import wx
 
-N = 20
+N = 40
 
 points = []
 

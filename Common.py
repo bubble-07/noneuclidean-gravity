@@ -3,6 +3,11 @@ from visual import *
 from math import *
 from random import *
 
+#Convenience func to convert numpy column vec to vector
+def make_vector(x):
+    return vector(x[0][0], x[1][0], x[2][0])
+
+
 #Gives a fourvector with the given components
 def vectorR4(x, y, z, w):
     return array([x, y, z, w])
@@ -23,4 +28,10 @@ def orthonorm_rotate(h, v, th):
 def projectR3(v1):
     return vector(v1[0], v1[1], v1[2])
 
+def randomnormedR4():
+    pos = vectorR4(uniform(-1.0, 1.0), uniform(-1.0, 1.0), uniform(-1.0, 1.0), uniform(-1.0, 1.0))
+    return normR4(pos)
 
+def randomnormedR3():
+    pos = vector(uniform(-1.0, 1.0), uniform(-1.0, 1.0), uniform(-1.0, 1.0))
+    return norm(pos)

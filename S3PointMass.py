@@ -39,13 +39,11 @@ class S3PointMass(PointMass):
     #Return a random point
     @staticmethod
     def randompoint():
-        pos = vectorR4(uniform(-1.0, 1.0), uniform(-1.0, 1.0), uniform(-1.0, 1.0), uniform(-1.0, 1.0))
-        return normR4(pos)
+        return randomnormedR4()
     #Return a random tangent vector
     @staticmethod
     def randomvel():
-        pos = vectorR4(uniform(-1.0, 1.0), uniform(-1.0, 1.0), uniform(-1.0, 1.0), uniform(-1.0, 1.0))
-        return normR4(pos)
+        return randomnormedR4()
     def updateappearance(self):
         self.sprite.pos = projectR3(self.pos)
     def zerovec(self):
